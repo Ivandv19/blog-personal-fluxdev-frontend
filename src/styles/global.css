@@ -1,0 +1,251 @@
+@import "tailwindcss";
+
+/* ============================================
+   DESIGN TOKENS — Tailwind v4 @theme
+   
+   All design decisions centralized here.
+   Components use these tokens via Tailwind utilities:
+     bg-surface, text-primary, border-subtle, etc.
+   ============================================ */
+
+@theme {
+    /* ── Typography ── */
+    --font-sans: 'Inter', system-ui, sans-serif;
+
+    /* ── Brand ── */
+    --color-brand: #3b82f6;
+    --color-brand-hover: #60a5fa;
+    --color-brand-muted: #3b82f620;
+
+    /* ── Surfaces ── */
+    --color-surface-base: #0f1012;
+    --color-surface-raised: #ffffff05;
+    --color-surface-hover: #ffffff0a;
+    --color-surface-overlay: #0f1012cc;
+
+    /* ── Borders ── */
+    --color-border-subtle: #ffffff0d;
+    --color-border-hover: #ffffff1a;
+    --color-border-muted: #1a1a1a;
+
+    /* ── Text ── */
+    --color-text-primary: #ededed;
+    --color-text-secondary: #d0d0d6;
+    --color-text-muted: #71717a;
+    --color-text-faint: #52525b;
+    --color-text-heading: #ffffff;
+
+    /* ── Spacing scale ── */
+    --spacing-section: 8rem;
+    --spacing-block: 4rem;
+    --spacing-element: 2rem;
+
+    /* ── Radii ── */
+    --radius-card: 2rem;
+    --radius-button: 0.75rem;
+    --radius-pill: 9999px;
+
+    /* ── Transitions ── */
+    --duration-fast: 200ms;
+    --duration-normal: 300ms;
+    --duration-slow: 500ms;
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+body {
+    @apply bg-surface-base text-text-primary antialiased;
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    transition: background-color var(--duration-normal) var(--ease-smooth),
+        color var(--duration-normal) var(--ease-smooth);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    @apply font-semibold tracking-tight;
+    color: var(--color-text-heading);
+}
+
+/* ── Selection ── */
+::selection {
+    background-color: var(--color-brand-muted);
+    color: #fff;
+}
+
+/* ── Scrollbar — Minimalist ── */
+::-webkit-scrollbar {
+    @apply w-1;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-surface-base);
+}
+
+::-webkit-scrollbar-thumb {
+    @apply rounded-full;
+    background: var(--color-border-muted);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-muted);
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.transition-elegant {
+    transition: all var(--duration-slow) var(--ease-smooth);
+}
+
+/* ============================================
+   LIGHT THEME OVERRIDES
+   
+   When html.light is active, override the
+   dark tokens with light-friendly values.
+   ============================================ */
+
+html.light {
+    /* ── Surfaces ── */
+    --color-surface-base: #f5f5f7;
+    --color-surface-raised: #0000000a;
+    --color-surface-hover: #00000012;
+    --color-surface-overlay: #f5f5f7e6;
+
+    /* ── Borders ── */
+    --color-border-subtle: #00000010;
+    --color-border-hover: #00000020;
+    --color-border-muted: #d4d4d8;
+
+    /* ── Text ── */
+    --color-text-heading: #18181b;
+    --color-text-primary: #1a1a1a;
+    --color-text-secondary: #3f3f46;
+    --color-text-muted: #52525b;
+    --color-text-faint: #a1a1aa;
+
+    /* ── Brand (slightly darker for light bg) ── */
+    --color-brand: #2563eb;
+    --color-brand-hover: #3b82f6;
+    --color-brand-muted: #2563eb18;
+
+    /* ── Selection ── */
+    ::selection {
+        color: #fff;
+    }
+}
+
+/* ============================================
+   ARTICLE CONTENT — Blog Post Styling
+   
+   Replaces @tailwindcss/typography prose.
+   All colors use semantic tokens → auto theme switching.
+   ============================================ */
+
+.article-content {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+}
+
+.article-content p {
+    margin-bottom: 2.5rem;
+}
+
+.article-content h2 {
+    color: var(--color-text-heading);
+    font-size: 1.875rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+}
+
+.article-content h3 {
+    color: var(--color-text-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.article-content strong {
+    color: var(--color-text-primary);
+    font-weight: 600;
+}
+
+.article-content a {
+    color: var(--color-brand);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color var(--duration-fast) var(--ease-smooth);
+}
+
+.article-content a:hover {
+    color: var(--color-brand-hover);
+}
+
+.article-content blockquote {
+    border-left: 2px solid var(--color-brand);
+    background: var(--color-surface-raised);
+    color: var(--color-text-primary);
+    padding: 1.5rem 2.5rem;
+    border-radius: 0 1.5rem 1.5rem 0;
+    margin: 2rem 0;
+}
+
+.article-content code {
+    color: var(--color-brand-hover);
+    background: var(--color-brand-muted);
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 0.875em;
+}
+
+.article-content pre {
+    background: var(--color-surface-raised);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-button);
+    padding: 1.5rem;
+    overflow-x: auto;
+    margin: 2rem 0;
+}
+
+.article-content pre code {
+    background: none;
+    padding: 0;
+    color: var(--color-text-secondary);
+}
+
+.article-content img {
+    border-radius: var(--radius-card);
+    border: 1px solid var(--color-border-muted);
+}
+
+.article-content ul,
+.article-content ol {
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.article-content li {
+    margin-bottom: 0.5rem;
+}
+
+.article-content ul li::marker {
+    color: var(--color-text-faint);
+}
+
+.article-content hr {
+    border-color: var(--color-border-subtle);
+    margin: 3rem 0;
+}

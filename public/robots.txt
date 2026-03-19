@@ -1,0 +1,8 @@
+# FluxDev Blog — robots.txt
+# https://blog.fluxdv.icu
+
+User-agent: *
+Allow: /
+Disallow: /admin
+
+Sitemap: https://blog.fluxdv.icu/sitemap-index.xml
