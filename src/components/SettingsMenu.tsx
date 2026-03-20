@@ -11,8 +11,10 @@ export default function SettingsMenu() {
 		const savedTheme = (localStorage.getItem('theme') as 'dark' | 'light') || 'dark';
 		setTheme(savedTheme);
 
-		const savedLang = (localStorage.getItem('lang') as 'es' | 'en') || 'es';
-		setLang(savedLang);
+		const path = window.location.pathname;
+		const currentLang = path.startsWith('/en') ? 'en' : 'es';
+		setLang(currentLang);
+		localStorage.setItem('lang', currentLang);
 	}, []);
 
 	// Close dropdown when clicking outside
@@ -33,8 +35,16 @@ export default function SettingsMenu() {
 	}
 
 	function handleLangChange(newLang: 'es' | 'en') {
+		if (newLang === lang) return;
 		setLang(newLang);
 		localStorage.setItem('lang', newLang);
+		
+		const path = window.location.pathname;
+		if (newLang === 'en') {
+			window.location.href = '/en' + path;
+		} else {
+			window.location.href = path.replace(/^\/en/, '') || '/';
+		}
 	}
 
 	return (

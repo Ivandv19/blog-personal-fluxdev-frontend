@@ -7,12 +7,14 @@ interface Props {
 	title: string;
 	description?: string;
 	image?: string;
+	lang?: string;
 }
 
 const {
 	title,
 	description = "Notas personales sobre arquitecturas, desarrollo web moderno y productos digitales.",
 	image = "/og-default.png",
+	lang = "es",
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -20,7 +22,7 @@ const ogImageURL = new URL(image, Astro.site);
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />

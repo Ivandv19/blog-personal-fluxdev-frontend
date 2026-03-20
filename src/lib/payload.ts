@@ -46,14 +46,14 @@ export interface PayloadResponse<T> {
 
 const PAYLOAD_URL = import.meta.env.PUBLIC_PAYLOAD_URL || 'http://localhost:3000/api';
 
-export async function getPosts(): Promise<PayloadPost[]> {
-	const res = await fetch(`${PAYLOAD_URL}/posts?limit=100&sort=-createdAt`);
+export async function getPosts(locale: string = 'es'): Promise<PayloadPost[]> {
+	const res = await fetch(`${PAYLOAD_URL}/posts?limit=100&sort=-createdAt&locale=${locale}`);
 	const data: PayloadResponse<PayloadPost> = await res.json();
 	return data.docs;
 }
 
-export async function getPostBySlug(slug: string): Promise<PayloadPost | null> {
-	const res = await fetch(`${PAYLOAD_URL}/posts?where[slug][equals]=${slug}`);
+export async function getPostBySlug(slug: string, locale: string = 'es'): Promise<PayloadPost | null> {
+	const res = await fetch(`${PAYLOAD_URL}/posts?where[slug][equals]=${slug}&locale=${locale}`);
 	const data: PayloadResponse<PayloadPost> = await res.json();
 	return data.docs[0] || null;
 }
