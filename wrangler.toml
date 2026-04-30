@@ -16,3 +16,5 @@ pages_build_output_dir = "dist"
 [vars]
 NODE_VERSION = "24.14.1"
 BUN_VERSION = "1.3.13"
+PUBLIC_PAYLOAD_URL = "https://blog-personal-fluxdev-backend.fluxdv.icu/api"
+
