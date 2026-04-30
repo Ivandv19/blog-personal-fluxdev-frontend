@@ -12,15 +12,16 @@
 		"check": "biome check --write ."
 	},
 	"dependencies": {
-		"@astrojs/react": "^4.4.2",
+		"@astrojs/react": "^5.0.4",
 		"@astrojs/rss": "^4.0.18",
 		"@astrojs/sitemap": "^3.7.2",
 		"@tailwindcss/typography": "^0.5.19",
 		"@tailwindcss/vite": "^4.2.4",
 		"@types/react": "^19.2.14",
 		"@types/react-dom": "^19.2.3",
-		"astro": "^5.18.1",
-		"marked": "^17.0.6",
+		"astro": "^6.2.1",
+		"framer-motion": "^12.38.0",
+		"marked": "^18.0.2",
 		"react": "^19.2.5",
 		"react-dom": "^19.2.5",
 		"tailwindcss": "^4.2.4"
